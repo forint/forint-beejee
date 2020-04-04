@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome to the cinema!{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="/css/style.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" crossorigin="anonymous">
+        {#<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/assets/owl.carousel.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/assets/owl.theme.default.min.css">#}
+        <link rel="stylesheet" href="/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+        {#<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css" />#}
+    {% endblock %}
+</head>
+<body class="homepage">
+{% block javascripts %}
+    <script src="/js/jquery.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <script src="/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+    {#<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.min.js"></script>#}
+    <script src="/js/owl.carousel.min.js"></script>
+    {#<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/owl.carousel.min.js"></script>#}
+    <script src="/js/gridifier.min.js"></script>
+    <script src="/js/lib.js"></script>
+{% endblock %}
+
+{% block body %}
+
+
+    <main role="main">
+
+        {% block header %}
+            <section class="jumbotron">
+                <div class="container">
+                    <h1 class="jumbotron-heading">
+                        <div class="outer">
+                            <div class="height">
+                                <a href="/" class="inner">Create New Task</a>
+                            </div>
+                        </div>
+                    </h1>
+                </div>
+
+                <div class="row header-links">
+                    <a href="/auth/login" title="Login">Login</a> &#124;
+                    <a href="/task/add" title="Create new task">Create new task</a>
+                </div>
+            </section>
+        {% endblock %}
+
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+                {#<div class="row">
+                    <i class="fas fa-film jumbotron-icon"></i>
+                    <h2 class="jumbotron-heading">Самые посещаемые фильмы: </h2>
+                    {% block slider %}
+                        <div id="owl" class="owl-carousel owl-theme">
+                            {% for popularFilm in popularFilms %}
+                                <div class="img-wrap">
+                                    <a href="/films/view/film/{{ popularFilm.slug }}" title="{{ popularFilm.title }}">
+                                        <img src="/uploads/{{ popularFilm.img }}?crop=entropy&fit=crop&h=421&sharp=10&vib=20&w=748" alt="{{ popularFilm.title }}">
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endblock %}
+                </div>#}
+
+                <div class="row ">
+                    <h2 class="jumbotron-heading">Добавить новую задачу: </h2>
+                    <div class="col-lg">
+                        <!--Body-->
+                        <div class="modal-body">
+                            <form id="form-task-add" action="/task/save" method="post" class="needs-validation" onsubmit="return false;" novalidate>
+                                <!-- Material input name -->
+                                <div class="md-form form-sm">
+                                    <i class="fa fa-envelope prefix"></i>
+                                    <input name="username" type="text" id="task-username" class="form-control form-control-sm" placeholder="Ваше имя" required>
+                                    <div class="valid-feedback">
+                                        Отлично
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Пожалуйста введите имя
+                                    </div>
+                                </div>
+
+                                <!-- Material input email -->
+                                <div class="md-form form-sm">
+                                    <i class="fa fa-lock prefix"></i>
+                                    <input name="email" type="email" id="task-email" class="form-control form-control-sm" placeholder="Ваш e-mail" required>
+                                    <div class="valid-feedback">
+                                        Отлично
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Пожалуйста введите email
+                                    </div>
+                                </div>
+
+                                <!-- Material input subject -->
+                                <div class="md-form form-sm">
+                                    <textarea name="description" id="task-description" placeholder="Описание задачи" class="form-control form-control-sm" required></textarea>
+                                    <div class="valid-feedback">
+                                        Отлично
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Пожалуйста введите описание задачи
+                                    </div>
+                                </div>
+
+
+                                <div class="text-center mt-4 mb-2">
+                                    <button class="btn btn-primary" onclick="takeData()" type="submit">Добавить задачу<i class="fa fa-send ml-2"></i></button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <ul>
+        {% for color in colors %}
+            <li>{{ color }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block footer %}
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <a href='#'><i class="fab fa-twitch fa-3x fa-fw"></i></a>
+            <a href='#'><i class="fab fa-facebook fa-3x fa-fw"></i></a>
+            <a href='#'><i class="fab fa-twitter fa-3x fa-fw"></i></a>
+            <a href='#'><i class="fab fa-youtube fa-3x fa-fw"></i></a>
+            <a href='#'><i class="fa fa-rss fa-3x fa-fw"></i></a>
+            <a href='#'><i class="fab fa-vine fa-3x fa-fw"></i></a>
+            <a href='#'><i class="fab fa-flickr fa-3x fa-fw"></i></a>
+            <a href='#'><i class="fab fa-linkedin fa-3x fa-fw"></i></a>
+            </span>
+        </div>
+    </div>
+    <!-- Footer -->
+{% endblock %}
+</body>
+</html>

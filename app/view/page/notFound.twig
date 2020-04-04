@@ -1,0 +1,52 @@
+{% extends 'home/index.twig' %}
+
+{% block title %}404 Not Found{% endblock %}
+
+{% block stylesheets %}
+    <style>
+
+        @font-face {
+            font-family: 'Glyphicons Halflings';
+            src: url('/vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.eot');
+            src: url('/vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+            url('/vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.woff') format('woff'),
+            url('/vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+            url('/vendor/twbs/bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+        }
+    </style>
+    <link rel="stylesheet" href="/css/style.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link rel="stylesheet" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/jquery.js"></script>
+    <script src="/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+{% endblock %}
+
+    {% block body %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="error-template">
+                        <h1>
+                            Oops!</h1>
+                        <h2>
+                            404 Not Found</h2>
+                        <div class="error-details">
+                            Sorry, an error has occured, Requested page not found!
+                        </div>
+                        <div class="error-actions">
+                            <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                                Take Me Home </a><a href="mailto:yura.kralya@gmail.com" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+{% block footer %}{% endblock %}

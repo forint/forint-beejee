@@ -1,0 +1,7 @@
+INSERT INTO rozetka.task (id, username, slug, email, description, created, published, status, admin_edited) VALUES (1, 'forint', '123', 'yura.kralya@gmail.com', '12345', '2020-04-03 19:08:26', '0000-00-00 00:00:00', 2, 0);
+INSERT INTO rozetka.task (id, username, slug, email, description, created, published, status, admin_edited) VALUES (2, 'Вася', '0', 'vasya@gmail.com', 'Вася вася - сын карася!', '2020-04-03 19:27:20', '0000-00-00 00:00:00', 2, 1);
+INSERT INTO rozetka.task (id, username, slug, email, description, created, published, status, admin_edited) VALUES (3, 'zzz', 'zzz', 'zzz@gmail.com', 'zzz', '2020-04-03 20:01:51', '0000-00-00 00:00:00', 0, 0);
+INSERT INTO rozetka.task (id, username, slug, email, description, created, published, status, admin_edited) VALUES (5, 'dag', 'dag', 'dag@gmailc.om', 'dag', '2020-04-03 20:14:49', '0000-00-00 00:00:00', 0, 0);
+INSERT INTO rozetka.task (id, username, slug, email, description, created, published, status, admin_edited) VALUES (8, 'Cat', 'cat--myau', 'cat@gmail.com', 'Cat - myau!', '2020-04-03 20:33:22', '0000-00-00 00:00:00', 0, 0);
+INSERT INTO rozetka.task (id, username, slug, email, description, created, published, status, admin_edited) VALUES (9, 'dog', 'gav', 'dogf@gmail.com', 'Gav', '2020-04-03 20:33:56', '0000-00-00 00:00:00', 0, 0);
+INSERT INTO rozetka.task (id, username, slug, email, description, created, published, status, admin_edited) VALUES (10, 'forint', 'fs', 'yura.kralya@gmail.com', 'fs', '2020-04-03 23:48:13', '0000-00-00 00:00:00', 0, 0);

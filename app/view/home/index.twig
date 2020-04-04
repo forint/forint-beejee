@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome to the cinema!{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="/css/style.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    {% endblock %}
+</head>
+<body class="homepage">
+    {% block javascripts %}
+        <script src="/js/jquery.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+        <script src="/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/js/lib.js"></script>
+    {% endblock %}
+
+    {% block body %}
+
+        <main role="main">
+
+            {% block header %}
+                <section class="jumbotron">
+                    <div class="container">
+                        <h1 class="jumbotron-heading">
+                            <div class="outer">
+                                <div class="height">
+                                    <a href="/" class="inner">Task Manager</a>
+                                </div>
+                            </div>
+                        </h1>
+                        <p class="lead text-muted">Здесь вы можете добавить задачи, которые будут решаться сами :)</p>
+                    </div>
+
+                    <div class="row header-links">
+                        {% if _session.is_admin == 1 %}
+                            <a href="/admin/tasks/index" title="Username">{{ _session.username}}</a>
+                        {% else  %}
+                            <a href="/auth/login" title="Login">Login</a>
+                        {% endif  %}
+                    </div>
+                </section>
+            {% endblock %}
+
+
+            <div class="album py-5 bg-light">
+                <div class="container">
+                    {#<div class="row">
+                        <i class="fas fa-film jumbotron-icon"></i>
+                        <h2 class="jumbotron-heading">Самые посещаемые фильмы: </h2>
+                        {% block slider %}
+                            <div id="owl" class="owl-carousel owl-theme">
+                                {% for popularFilm in popularFilms %}
+                                    <div class="img-wrap">
+                                        <a href="/films/view/film/{{ popularFilm.slug }}" title="{{ popularFilm.title }}">
+                                            <img src="/uploads/{{ popularFilm.img }}?crop=entropy&fit=crop&h=421&sharp=10&vib=20&w=748" alt="{{ popularFilm.title }}">
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endblock %}
+                    </div>#}
+
+                    <div class="row">
+                        {% if page_count > 0 %}
+
+                            <h2 class="jumbotron-heading">Список задач: </h2>
+                            <table class="table">
+                                {% if _get.direction is not defined %}
+                                    {% set direction = 'asc' %}
+                                {% else %}
+                                    {% if _get.direction == 'asc' %}
+                                        {% set direction = 'desc' %}
+                                    {% else %}
+                                        {% set direction = 'asc' %}
+                                    {% endif %}
+                                {% endif %}
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Имя пользователя<i class="fa fa-sort" aria-hidden="true" onclick="window.location.href='{{ path("/", _get|merge({("pg"): currentPage})|merge({("sort"): 'username'})|merge({("direction"): direction})) }}'"></i></th>
+                                        <th scope="col">Email<i class="fa fa-sort" aria-hidden="true" onclick="window.location.href='{{ path("/", _get|merge({("pg"): currentPage})|merge({("sort"): 'email'})|merge({("direction"): direction})) }}'"></i></th>
+                                        <th scope="col">Описание</th>
+                                        <th scope="col">Статус<i class="fa fa-sort" aria-hidden="true" onclick="window.location.href='{{ path("/", _get|merge({("pg"): currentPage})|merge({("sort"): 'status'})|merge({("direction"): direction})) }}'"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for task in tasks %}
+                                        <tr>
+                                            <th scope="row">{{ task.id }}</th>
+                                            <td>{{ task.username }}</td>
+                                            <td>{{ task.email }}</td>
+                                            <td>{{ task.description }}</td>
+                                            <td>
+                                                {% if task.status == 0 %}
+                                                    <span class="badge">Открыто</span>
+                                                {% elseif task.status == 1 %}
+                                                    <span class="badge">В процессе</span>
+                                                {% else %}
+                                                    <span class="badge">Выполнено</span>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <h4 class="jumbotron-heading text-center no-task">В данний момент нет текущих заданий</h4>
+                        {% endif %}
+
+                        {{ knp_pagination_render(pagination) }}
+
+                        <div class="messages">
+                            <ul>
+                                {% if messages is defined %}
+                                    {% for message in messages %}
+                                        <li>{{ message }}</li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="text-center mt-4 mb-2">
+                            <button class="btn btn-primary" type="button" onclick="window.location.href = '/task/add';">Добавить задачу<i class="fa fa-send ml-2"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    {% endblock %}
+
+    {% block footer %}
+    <!-- Footer -->
+        <div class="footer">
+            <div class="container">
+                <a href='#'><i class="fab fa-twitch fa-3x fa-fw"></i></a>
+                <a href='#'><i class="fab fa-facebook fa-3x fa-fw"></i></a>
+                <a href='#'><i class="fab fa-twitter fa-3x fa-fw"></i></a>
+                <a href='#'><i class="fab fa-youtube fa-3x fa-fw"></i></a>
+                <a href='#'><i class="fa fa-rss fa-3x fa-fw"></i></a>
+                <a href='#'><i class="fab fa-vine fa-3x fa-fw"></i></a>
+                <a href='#'><i class="fab fa-flickr fa-3x fa-fw"></i></a>
+                <a href='#'><i class="fab fa-linkedin fa-3x fa-fw"></i></a>
+                </span>
+            </div>
+        </div>
+    <!-- Footer -->
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,8 @@
+database_host: mysql57
+database_port: 33061
+database_name: rozetka
+database_user: root
+database_password: Q12w23e34
+
+admin_username: admin
+admin_password: 123

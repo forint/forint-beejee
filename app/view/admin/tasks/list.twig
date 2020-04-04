@@ -1,0 +1,190 @@
+{% extends 'admin/dashboard/index.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/admin.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/vendor/almasaeed2010/adminlte/dist/css/adminlte.min.css" crossorigin="anonymous">
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/jquery.js"></script>
+    <script src="/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/vendor/almasaeed2010/adminlte/dist/js/adminlte.min.js"></script>
+{% endblock %}
+
+{% block title %}Dashboard!{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        {% block navbar %} {{ parent() }} {% endblock %}
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            {% block brandlogo %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block sidebar %}
+                {{ parent() }}
+            {% endblock %}
+        </aside>
+
+        {% block wrapper %}
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <div class="messages">
+                    <ul>
+                        {% if messages is defined %}
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1>Tasks</h1>
+                            </div>
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active">Tasks</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div><!-- /.container-fluid -->
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <!-- Default box -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Tasks</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                    <i class="fas fa-minus"></i></button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                                    <i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table table-striped projects">
+                                <thead>
+                                <tr>
+                                    <th style="width: 1%">
+                                        #
+                                    </th>
+                                    <th style="width: 20%">
+                                        Username
+                                    </th>
+                                    <th>
+                                        Email
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                    <th style="width: 8%" class="text-center">
+                                        Status
+                                    </th>
+                                    <th style="width: 20%">
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% if tasks is defined %}
+                                        {% for task in tasks %}
+                                            <tr>
+                                                <td>
+                                                    {{ task.id }}
+                                                </td>
+                                                <td>
+                                                    <a>{{ task.username }}</a>
+                                                    <br>
+                                                    <small>
+                                                        Created {{ task.created }}
+                                                    </small>
+                                                </td>
+                                                <td class="email">
+                                                    <small>{{ task.email }}</small>
+                                                </td>
+                                                <td class="description">
+                                                    <small>{{ task.description }}</small>
+                                                </td>
+                                                <td class="project-state">
+                                                    {% if task.status == 0 %}
+                                                        <span class="badge badge-danger">Открыто</span>
+                                                    {% elseif task.status == 1 %}
+                                                        <span class="badge badge-info">В процессе</span>
+                                                    {% else %}
+                                                        <span class="badge badge-success">Выполнено</span>
+                                                    {% endif %}
+                                                    {% if task.admin_edited == 1 %}
+                                                        <span class="badge">Отредактировано администратором</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td class="project-actions text-right">
+                                                    {#<a class="btn btn-primary btn-sm" href="/task/view/task/{{ task.slug }}">
+                                                        <i class="fas fa-folder">
+                                                        </i>
+                                                        View
+                                                    </a>#}
+                                                    <a class="btn btn-info btn-sm" href="/admin/tasks/edit/id/{{ task.id }}">
+                                                        <i class="fas fa-pencil-alt">
+                                                        </i>
+                                                        Edit
+                                                    </a>
+                                                    <a class="btn btn-danger btn-sm" href="/admin/tasks/delete/id/{{ task.id }}">
+                                                        <i class="fas fa-trash">
+                                                        </i>
+                                                        Delete
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+        {% endblock %}
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+            <div class="p-3">
+                <h5>Title</h5>
+                <p>Sidebar content</p>
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="float-right d-none d-sm-inline">
+                Anything you want
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+        </footer>
+        {% block footer %}{% endblock %}
+    </div>
+    <!-- ./wrapper -->
+{% endblock %}

@@ -1,0 +1,229 @@
+html,body{
+    height: 100%;
+    font-size: 13px;
+}
+section.content .row {
+    margin-left:0 ;
+    margin-right: 0;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+.main-header .nav-link {
+    height: auto !important;
+}
+.projects .table-avatar img,
+.projects img.table-avatar {
+    border-radius: 0 !important;;
+    width: 10rem !important;
+}
+.card {
+    width: 100%;
+}
+.film-session {
+    text-align: center;
+}
+.film-session span{
+    display: inline-block;
+    border-radius: 50%;
+    background: #31708f;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    width:25px;
+}
+.input-group-sm>.custom-select, .input-group-sm>.form-control, .input-group-sm>.input-group-append>.btn, .input-group-sm>.input-group-append>.input-group-text, .input-group-sm>.input-group-prepend>.btn, .input-group-sm>.input-group-prepend>.input-group-text{
+    font-size: 12px !important;
+}
+.input-group-sm>.custom-select, .input-group-sm>.form-control:not(textarea) {
+    height: calc(1.8125rem + 1px) !important;
+}
+/** Flash Messages */
+.messages ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.messages ul li{
+    background: #343A3E;
+    margin: 0;
+    padding: 15px;
+    list-style-type: none;
+    color: red;
+    font-size: 16px;
+}
+/** Flash Messages */
+
+/** Booking field validation */
+.needs-validation .md-form {
+    position: relative;
+    margin-bottom: 8px;
+}
+.needs-validation .md-form i{
+    position: absolute;
+    top: 10px;
+    left: 8px;
+}
+.needs-validation .md-form input,
+.needs-validation .md-form select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-left: 25px;
+}
+.valid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #28a745;
+}
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+.was-validated .form-control:valid, .form-control.is-valid {
+    border-color: #28a745;
+    padding-right: calc(1.5em + 0.75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+.was-validated .form-control:invalid, .form-control.is-invalid {
+    border-color: #dc3545;
+    padding-right: calc(1.5em + 0.75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.was-validated:valid ~ .valid-feedback,
+.was-validated:valid ~ .valid-tooltip,
+.was-validated .form-control:valid ~ .valid-feedback,
+.was-validated .form-control:valid ~ .valid-tooltip,
+.is-valid ~ .valid-feedback,
+.is-valid ~ .valid-tooltip {
+    display: block;
+}
+.was-validated:invalid ~ .invalid-feedback,
+.was-validated:invalid ~ .invalid-tooltip,
+.was-validated .form-control:invalid ~ .invalid-feedback,
+.was-validated .form-control:invalid ~ .invalid-tooltip,
+.is-invalid ~ .invalid-feedback,
+.is-invalid ~ .invalid-tooltip {
+    display: block;
+}
+/** Booking field validation */
+
+/** Booking */
+.seatStructure button {
+    display: block;
+    margin: 0 auto;
+}
+.screen {
+    width:100%;
+    height:20px;
+    background: #777;
+    color: #fff;
+    line-height: 20px;
+    font-size: 13px;
+}
+.seats {
+    border:1px solid red;
+    background: yellow;
+}
+.select-places-now {
+    text-align: center;
+    color: green;
+    font-size: 13px;
+}
+.smallBox::before {
+    content: ".";
+    width: 15px;
+    height: 15px;
+    float:left;
+    margin-right: 5px;
+}
+.greenBox::before {
+    content: "";
+    background: green;
+}
+.redBox::before {
+    content: "";
+    background: red;
+}
+.emptyBox::before {
+    content: "";
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    background-color: #ccc;
+}
+
+table.booking {
+    text-align:center;
+    margin: 0 auto;
+}
+table.booking tbody tr td {
+    padding-bottom: 1em;
+}
+table.booking tbody tr td div.seat{
+    position: relative;
+    width: 25px;
+    height: 25px;
+    margin-right:8px;
+}
+table.booking tbody tr td div.seat label{
+    width: 25px;
+    height: 25px;
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 3;
+    font-size: 11px;
+    padding-top: 5px;
+    cursor: pointer;
+    pointer-events: none;
+}
+table.booking tbody tr td.screen-tips{
+    font-size: 11px;
+}
+table.booking tbody tr td.screen-tips div.smallBox{
+    text-align: center;
+}
+
+input[type=checkbox] {
+    margin: 0 !important;
+    width: 25px;
+    height: 25px;
+}
+input[type=checkbox].select-places-now-available:before {
+    cursor: pointer;
+}
+input[type=checkbox]:before {
+    position: absolute;
+    top:0;
+    z-index: 2;
+    content: "";
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    vertical-align:middle;
+    text-align: center;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    background-color:#ccc;
+    border-radius: 50%;
+}
+input[type=checkbox]:checked:before {
+    background-color: green;
+    font-size: 15px;
+}
+input[type=checkbox].reserved:before {
+    background-color: red;
+}
+/** Booking */

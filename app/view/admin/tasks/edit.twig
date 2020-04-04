@@ -1,0 +1,169 @@
+{% extends 'admin/dashboard/index.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/admin.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/vendor/almasaeed2010/adminlte/dist/css/adminlte.min.css" crossorigin="anonymous">
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/jquery.js"></script>
+    <script src="/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/vendor/almasaeed2010/adminlte/dist/js/adminlte.min.js"></script>
+    <script src="/js/admin.js"></script>
+{% endblock %}
+
+{% block title %}Dashboard!{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        {% block navbar %} {{ parent() }} {% endblock %}
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            {% block brandlogo %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block sidebar %}
+                {{ parent() }}
+            {% endblock %}
+        </aside>
+
+
+        {% block wrapper %}
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper" >
+                <div class="messages">
+                    <ul>
+                        {% if messages is defined %}
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1>Task Edit</h1>
+                            </div>
+                            <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active">Task Edit</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div><!-- /.container-fluid -->
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+
+                    <form name="edit_form" action="/admin/tasks/edit" method="post" role="form" onsubmit="editFormSubmit();">
+                        <input type="hidden" name="id" value="{{ task.id }}">
+                        <input type="hidden" name="admin_edited" value="{{ task.admin_edited }}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h3 class="card-title">General</h3>
+
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                                <i class="fas fa-minus"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="inputName">Task username</label>
+                                            <input name="username" type="text" id="task-title" class="form-control" value="{{ task.username }}" readonly="readonly">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputName">Email</label>
+                                            <input name="email" type="text" id="task-email" class="form-control" value="{{ task.email }}" readonly="readonly">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputDescription">Task Description</label>
+                                            <textarea name="description" id="inputDescription" class="form-control" rows="4">{{ task.description }}</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputStatus">Status</label>
+                                            <select name="status" class="form-control custom-select">
+                                                <option selected="" disabled="">Select one</option>
+                                                <option value="0" {% if task.status == 0 %}selected{% endif %}>Открыто</option>
+                                                <option value="1" {% if task.status == 1 %}selected{% endif %}>В процессе</option>
+                                                <option value="2" {% if task.status == 2 %}selected{% endif %}>Выполнено</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card card-secondary">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Advanced</h3>
+
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                                <i class="fas fa-minus"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="inputName">Task Url</label>
+                                            <input name="slug" type="text" id="task-slug" class="form-control" value="{{ task.slug }}">
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="/admin/dashboard/cancel" class="btn btn-secondary">Cancel</a>
+                                <input type="submit" value="Save" class="btn btn-success float-right">
+                            </div>
+                        </div>
+                    </form>
+                </section>
+                <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+        {% endblock %}
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+            <div class="p-3">
+                <h5>Title</h5>
+                <p>Sidebar content</p>
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="float-right d-none d-sm-inline">
+                Anything you want
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+    {% block footer %}{% endblock %}
+
+{% endblock %}
